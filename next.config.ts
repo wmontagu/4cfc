@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',  // Enable static exports for Vercel deployment
+  // For Vercel deployment, we should not use static export
+  // output: 'export',  // Commented out to allow server-side rendering
   basePath: '',      // This will be automatically set by Vercel
   // The following settings optimize your app for Vercel's environment
   reactStrictMode: true,
