@@ -22,9 +22,6 @@ export default function Resources() {
           <li>How to ask / who to ask for recommendation letters?</li>
         </ol>
         
-        <p className="text-lg italic mb-8">
-          → this could eventually be turned into a blog / community forum style feature of the website, where visitors can share what resources they used as well as any tips for any of the above!
-        </p>
         
         <div className="grid md:grid-cols-2 gap-8">
           <div className="card">

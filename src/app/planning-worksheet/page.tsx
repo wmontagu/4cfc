@@ -36,9 +36,7 @@ export default function PlanningWorksheet() {
           </div>
         </div>
         
-        <p className="text-lg font-medium mb-4">
-          Future enhancement: We plan to create a digital version of this worksheet where you can create an account, store your information online, and update it as you progress through the application process.
-        </p>
+        
       </div>
     </>
   );
