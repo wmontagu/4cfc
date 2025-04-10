@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function CollegeCollage() {
+function CollegeContent() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const searchParams = useSearchParams();
   
@@ -89,5 +89,13 @@ export default function CollegeCollage() {
         </div>
       </div>
     </>
+  );
+}
+
+export default function CollegeCollage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CollegeContent />
+    </Suspense>
   );
 }
