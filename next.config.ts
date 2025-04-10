@@ -1,13 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // For Vercel deployment, we should not use static export
-  // output: 'export',  // Commented out to allow server-side rendering
-  basePath: '',      // This will be automatically set by Vercel
-  // The following settings optimize your app for Vercel's environment
+  // Vercel deployment settings
+  distDir: '.next',
+  // The following settings optimize the app for Vercel
   reactStrictMode: true,
-  // Ensure correct routing for Vercel's serverless functions
   trailingSlash: false,
+  // Enable serverless deployment for Vercel
+  images: {
+    domains: [],
+    unoptimized: true
+  },
+  // Ensure proper webpack configuration
+  webpack: (config) => {
+    // Custom webpack configurations if needed
+    return config;
+  }
 };
 
 export default nextConfig;
