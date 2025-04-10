@@ -13,10 +13,10 @@ export default function Resources() {
           <li>Scholarship search</li>
           <li>Financial Aid info (e.g. FAFSA, etc.)</li>
           <li>Tips on succeeding during the college app process</li>
-          <li>Articles on "Why college"</li>
-          <li>Articles on "How to choose the right college" (e.g. what region, big school/small school, etc.)</li>
+          <li>Articles on &quot;Why college&quot;</li>
+          <li>Articles on &quot;How to choose the right college&quot; (e.g. what region, big school/small school, etc.)</li>
           <li>
-            <p>→ can eventually add this as a "quiz" feature on the website: students can come here to fill out a "questionnaire" with their preferences, and an algorithm will run to output a selection of schools that may be of interest to them</p>
+            <p>→ can eventually add this as a &quot;quiz&quot; feature on the website: students can come here to fill out a &quot;questionnaire&quot; with their preferences, and an algorithm will run to output a selection of schools that may be of interest to them</p>
           </li>
           <li>How to ask / who to ask for recommendation letters?</li>
         </ol>
