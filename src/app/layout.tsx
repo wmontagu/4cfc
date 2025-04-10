@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "4CFC - For College Students, From College Students",
   description: "Helping high schoolers navigate the college application process",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
