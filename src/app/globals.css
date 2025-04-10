@@ -23,7 +23,7 @@ body {
   font-weight: 700;
   margin-bottom: 0.5rem; /* mb-2 equivalent */
   color: white;
-  text-align: center;
+  text-align: center; /* */
 }
 
 .card {
