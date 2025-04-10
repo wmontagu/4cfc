@@ -1,0 +1,35 @@
+/* Hoverable dropdown styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 50;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Make dropdown items look nicer */
+.dropdown-content a {
+  color: #333;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #3b82f6;
+  color: white;
+}

@@ -1,17 +1,25 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 export default function CollegeCollage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const searchParams = useSearchParams();
   
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCategory(e.target.value);
-  };
+  // Update selected category based on URL parameter
+  useEffect(() => {
+    const category = searchParams.get('category');
+    if (category) {
+      setSelectedCategory(category);
+    } else {
+      setSelectedCategory('all');
+    }
+  }, [searchParams]);
 
   return (
     <>
-      <div className="header-gradient">
-        <h1 className="text-5xl font-bold">A College Collage</h1>
+      <div className="header-gradient bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded">
+        <h1>A College Collage</h1>
       </div>
       
       <div className="container mx-auto px-4 py-8">
@@ -19,20 +27,21 @@ export default function CollegeCollage() {
           In this genuine and insightful series, we chat with current college students and recent alumni about their experiences in the college application process and/or during college. Immerse yourself in their stories to get a glimpse of what college beholds!
         </p>
         
-        <div className="dropdown-container mb-8">
-          <label htmlFor="category-select" className="font-bold mr-2">Filter by category:</label>
-          <select 
-            id="category-select" 
-            value={selectedCategory} 
-            onChange={handleCategoryChange}
-            className="dropdown-select"
-          >
-            <option value="all">All Categories</option>
-            <option value="limited-resource">Limited-Resource Backgrounds</option>
-            <option value="student-athletes">Student-Athletes</option>
-            <option value="international">International Students</option>
-            <option value="stem">STEM Majors</option>
-          </select>
+        <div className="mb-8 bg-blue-50 p-4 rounded border border-blue-200">
+          <h2 className="font-bold text-xl text-blue-600 mb-2">
+            {selectedCategory === 'all' 
+              ? 'All Categories' 
+              : selectedCategory === 'limited-resource' 
+                ? 'Limited-Resource Backgrounds'
+                : selectedCategory === 'student-athletes'
+                  ? 'Student-Athletes'
+                  : selectedCategory === 'international'
+                    ? 'International Students'
+                    : 'STEM Majors'}
+          </h2>
+          <p>
+            Use the dropdown menu in the navigation bar to filter different categories of college experiences.
+          </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-8 mb-10">
