@@ -11,7 +11,7 @@ export default function About() {
         </p>
         
         <p className="text-lg mb-8">
-          Our mission is to encourage high schoolers (particularly those of underserved/first-generation/low-income/etc. communities) to pursue higher education by guiding them on their application journey, introducing resources, and offering insight into the college experience.
+          Our mission is to encourage high schoolers to pursue higher education by guiding them on their application journey, introducing resources, and offering insight into the college experience.
         </p>
         
         <p className="text-lg mb-8">

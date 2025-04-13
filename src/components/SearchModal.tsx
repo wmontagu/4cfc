@@ -163,19 +163,20 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
               {results.map((result, index) => (
                 <li 
                   key={index} 
-                  className="p-4 hover:bg-gray-100 cursor-pointer"
+                  className="p-4 hover:bg-blue-50 cursor-pointer transition-all duration-200"
+                  style={{ cursor: 'pointer' }}
                   onClick={() => handleResultClick(result)}
                 >
                   <div className="flex items-start">
                     <div className="flex-1">
-                      <h3 className="font-bold text-blue-600">{result.title}</h3>
-                      <p className="text-sm text-gray-500">{result.path}</p>
+                      <h3 className="font-bold text-blue-600 group-hover:text-blue-800">{result.title}</h3>
+                      
                       <p className="mt-1">{result.excerpt}</p>
                     </div>
                   </div>
                 </li>
               ))}
-            </ul>
+          </ul>
           )}
           
           {searchTerm === '' && (

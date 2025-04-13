@@ -1,4 +1,69 @@
-/* Hoverable dropdown styles */
+/* Mobile menu button */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Responsive navigation styles */
+@media (max-width: 767px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    flex-direction: column;
+    padding: 80px 20px 30px;
+    transition: right 0.3s ease;
+    z-index: 50;
+    overflow-y: auto;
+  }
+
+  .nav-links.mobile-menu-open {
+    right: 0;
+  }
+
+  .nav-links a {
+    padding: 12px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Override the hover dropdown behavior on mobile */
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown-content {
+    position: static;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+    padding-left: 15px;
+  }
+
+  /* On mobile, show dropdown menu on tap instead of hover */
+  .dropdown:hover .dropdown-content {
+    display: none;
+  }
+
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+}
+
+/* Hoverable dropdown styles (for desktop) */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -15,8 +80,11 @@
   left: 0;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+/* Show dropdown on hover (desktop only) */
+@media (min-width: 768px) {
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 }
 
 /* Make dropdown items look nicer */
