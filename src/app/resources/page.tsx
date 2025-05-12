@@ -1,15 +1,18 @@
 export default function Resources() {
   return (
-    <>
-      <div className="header-gradient bg-gradient-to-r from-blue-300 to-purple-300 p-3 rounded">
-        <h1>College Application Resources</h1>
+    <div className="min-h-screen bg-amber-50">
+      {/* Top spacing to account for the fixed navbar */}
+      <div className="pt-16 md:pt-20"></div>
+    
+      <div className="header-gradient bg-gradient-to-r from-blue-300 to-purple-300 p-4 sm:p-5 rounded mb-6 sm:mb-8 mx-4 sm:mx-6 md:mx-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">College Application Resources</h1>
       </div>
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
 
-        <h2 className="text-2xl font-bold text-blue-600 mb-6">Common Topics</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-blue-600 mb-4 sm:mb-6">Common Topics</h2>
         
-        <ol className="list-decimal pl-8 mb-8 text-lg space-y-4">
+        <ol className="list-decimal pl-5 sm:pl-8 mb-6 sm:mb-8 text-base sm:text-lg space-y-3 sm:space-y-4">
           <li>Essay writing (e.g. College Essay Guy)</li>
           <li>Scholarship search</li>
           <li>Financial Aid info (e.g. FAFSA, etc.)</li>
@@ -42,6 +45,6 @@ export default function Resources() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

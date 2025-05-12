@@ -16,7 +16,7 @@ function CollegeContent() {
   const cards = [
     {
       key: 'limited-resource',
-      icon: <FaHandHoldingUsd style={{ fontSize: '3rem' }} />,
+      icon: <div className="flex justify-center items-center w-full"><FaHandHoldingUsd className="text-blue-500 text-5xl sm:text-6xl" /></div>,
       title: 'Limited-Resource Backgrounds',
       text: (
         <>
@@ -27,7 +27,7 @@ function CollegeContent() {
     },
     {
       key: 'student-athletes',
-      icon: <FaFutbol style={{ fontSize: '3rem' }} />,
+      icon: <div className="flex justify-center items-center w-full"><FaFutbol className="text-blue-500 text-5xl sm:text-6xl" /></div>,
       title: 'Student-Athletes',
       text: (
         <>
@@ -38,7 +38,7 @@ function CollegeContent() {
     },
     {
       key: 'international',
-      icon: <FaGlobeAmericas style={{ fontSize: '3rem' }} />,
+      icon: <div className="flex justify-center items-center w-full"><FaGlobeAmericas className="text-blue-500 text-5xl sm:text-6xl" /></div>,
       title: 'International Students',
       text: (
         <>
@@ -49,7 +49,7 @@ function CollegeContent() {
     },
     {
       key: 'stem',
-      icon: <FaFlask style={{ fontSize: '3rem' }} />,
+      icon: <div className="flex justify-center items-center w-full"><FaFlask className="text-blue-500 text-5xl sm:text-6xl" /></div>,
       title: 'STEM Majors',
       text: (
         <>
@@ -65,15 +65,15 @@ function CollegeContent() {
     : cards.filter(card => card.key === selectedCategory);
 
   return (
-    <>
+    <div className="min-h-screen bg-amber-50">
       {/* Top spacing to account for the fixed navbar */}
       <div className="pt-16 md:pt-20"></div>
-
       
-      <div className="header-gradient bg-gradient-to-r from-blue-300 to-purple-300 p-3 rounded">
-        <h1>A College Collage</h1>
+      {/* Header section with gradient background */}
+      <div className="header-gradient bg-gradient-to-r from-blue-300 to-purple-300 p-4 sm:p-5 rounded mb-6 sm:mb-8 mx-4 sm:mx-6 md:mx-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">The College Collage</h1>
+        <p className="text-base sm:text-lg text-gray-700">Real stories and advice from college students</p>
       </div>
-      
 
       <div className="section container mx-auto px-4 md:px-8 py-12 md:py-16 bg-amber-50">
         <div className="max-w-3xl mx-auto text-center mb-12">
@@ -100,7 +100,7 @@ function CollegeContent() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

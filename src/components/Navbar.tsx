@@ -1,4 +1,3 @@
-// "use client" enables interactivity - required for React hooks and browser APIs
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -30,13 +29,13 @@ export default function Navbar() {
   return (
     <>
       {/* Main navigation - fixed at top of screen */}
-      <nav className="fixed w-full z-50 bg-opacity-95 backdrop-blur-sm bg-amber-50 py-3 px-4 md:px-8">
+      <nav className="fixed w-full z-40 bg-white border-b shadow-sm py-3 px-4 md:px-8">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-amber-900 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-all duration-300 hover:opacity-80">
               4CFC
             </Link>
-            <span className="ml-2 hidden sm:inline-block text-sm text-white tracking-wide">
+            <span className="ml-2 hidden sm:inline-block text-sm text-gray-700 tracking-wide">
               For College Students, From College Students
             </span>
           </div>
@@ -52,121 +51,128 @@ export default function Navbar() {
                 <FaSearch className="text-blue-600 hover:text-blue-800 transition-colors duration-200" />
               </button>
             </div>
-            
-            {/* Mobile menu toggle */}
-            <button
-              className="flex items-center justify-center w-10 h-10 rounded-full focus:outline-none bg-amber-100 hover:bg-amber-200 transition-colors duration-200"
-              onClick={toggleMobileMenu}
-              aria-label="Toggle mobile menu"
-            >
-              {isMobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile menu - slides in from left when toggled */}
-        <div className={`fixed inset-0 z-40 transform transition-transform duration-300 ease-in-out top-14 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <div className="bg-gradient-to-b from-amber-50 to-amber-100 shadow-lg h-full overflow-y-auto p-4">
-            <div className="max-w-lg mx-auto rounded-xl bg-white p-6 shadow-md">
-              <div className="flex flex-col space-y-3">
-                {/* Navigation links - each closes the mobile menu when clicked */}
-                <Link 
-                  href="/" 
-                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link 
-                  href="/about" 
-                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link 
-                  href="/planning-worksheet" 
-                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Planning Worksheet
-                </Link>
-                <Link 
-                  href="/resources" 
-                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Resources
-                </Link>
-                
-                {/* College Collage section with nested category links */}
-                <div className="flex flex-col py-2">
-                  <Link 
-                    href="/college-collage" 
-                    className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    College Collage
-                  </Link>
-                  {/* Indented submenu for College Collage categories */}
-                  <div className="mt-2 ml-4 pl-4 border-l-2 border-amber-200 flex flex-col space-y-2 bg-amber-50/50 rounded-lg p-2">
-                    <Link 
-                      href="/college-collage" 
-                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      All Categories
-                    </Link>
-                    <Link 
-                      href="/college-collage?category=limited-resource" 
-                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Limited-Resource
-                    </Link>
-                    <Link 
-                      href="/college-collage?category=student-athletes" 
-                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Student-Athletes
-                    </Link>
-                    <Link 
-                      href="/college-collage?category=international" 
-                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      International
-                    </Link>
-                    <Link 
-                      href="/college-collage?category=stem" 
-                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      STEM Majors
-                    </Link>
-                  </div>
-                </div>
-                
-                {/* Mobile Search Button */}
-                <button 
-                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 flex items-center mt-2"
-                  onClick={() => {
-                    handleSearchClick();
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  <FaSearch className="mr-2" />
-                  Search
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </nav>
+      
+      {/* Floating hamburger button - always visible on mobile */}
+      <div className="md:hidden">
+        <button
+          className="fixed bottom-6 right-6 flex items-center justify-center w-20 h-20 rounded-full focus:outline-none bg-blue-600 hover:bg-blue-700 transition-colors duration-200 shadow-lg border-2 border-blue-400 z-50"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+        >
+          {isMobileMenuOpen ? 
+            <FaTimes className="text-white text-4xl" /> : 
+            <FaBars className="text-white text-4xl" />
+          }              
+        </button>
+      </div>
+
+      {/* Mobile menu - slides in from left when toggled */}
+      <div 
+        className={`fixed inset-0 z-45 transform transition-transform duration-300 ease-in-out top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        <div className="bg-gradient-to-b from-amber-50 to-amber-100 shadow-lg h-full overflow-y-auto p-4">
+          <div className="max-w-lg mx-auto rounded-xl bg-white p-6 shadow-md">
+            <div className="flex flex-col space-y-3">
+              {/* Navigation links - each closes the mobile menu when clicked */}
+              <Link 
+                href="/" 
+                className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                href="/about" 
+                className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                href="/planning-worksheet" 
+                className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Planning Worksheet
+              </Link>
+              <Link 
+                href="/resources" 
+                className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Resources
+              </Link>
+              
+              {/* College Collage section with nested category links */}
+              <div className="flex flex-col py-2">
+                <Link 
+                  href="/college-collage" 
+                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  College Collage
+                </Link>
+                {/* Indented submenu for College Collage categories */}
+                <div className="mt-2 ml-4 pl-4 border-l-2 border-amber-200 flex flex-col space-y-2 bg-amber-50/50 rounded-lg p-2">
+                  <Link 
+                    href="/college-collage" 
+                    className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    All Categories
+                  </Link>
+                  <Link 
+                    href="/college-collage?category=limited-resource" 
+                    className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Limited-Resource
+                  </Link>
+                  <Link 
+                    href="/college-collage?category=student-athletes" 
+                    className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Student-Athletes
+                  </Link>
+                  <Link 
+                    href="/college-collage?category=international" 
+                    className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    International
+                  </Link>
+                  <Link 
+                    href="/college-collage?category=stem" 
+                    className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    STEM Majors
+                  </Link>
+                </div>
+              </div>
+              
+              {/* Mobile Search Button */}
+              <button 
+                className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 flex items-center mt-2"
+                onClick={() => {
+                  handleSearchClick();
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                <FaSearch className="mr-2" />
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       
       {/* Search Modal - conditionally rendered based on isSearchOpen state */}
       <SearchModal isOpen={isSearchOpen} onClose={handleCloseSearch} />
     </>
   );
-};
+}
