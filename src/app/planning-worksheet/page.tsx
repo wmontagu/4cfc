@@ -17,7 +17,7 @@ export default function PlanningWorksheet() {
           <li className="mb-3">Create checklists of requirements for each institution (including financial aid information, recommendation letters, transcripts, essays, etc.).</li>
         </ul>
         
-        <div className="card mb-10">
+        <div className="card mb-6">
           <h2 className="text-2xl font-bold text-blue-600 mb-4">Ready to get started?</h2>
           <p className="mb-6">
             Download our comprehensive Excel spreadsheet to track your college application process. This tool will help you stay organized and on top of deadlines.
