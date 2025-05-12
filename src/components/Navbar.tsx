@@ -1,132 +1,225 @@
-"use client";
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
-import SearchModal from './SearchModal';
-import './navbar.css'; // We'll create this CSS file for the hover effect
+/**
+ * Navbar Component - Site-wide navigation bar
+ * 
+ * This component appears at the top of every page and provides:
+ * - Site branding/logo
+ * - Navigation menu (mobile-responsive)
+ * - Search functionality
+ */
 
-const Navbar = () => {
+// Enable client-side interactivity
+"use client";
+
+// Import React hooks for state management
+import { useState, useEffect } from 'react';
+
+// Import Next.js Link component for optimized client-side navigation
+import Link from 'next/link';
+
+// Import icons from react-icons library
+import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
+
+// Import the search modal component
+import SearchModal from './SearchModal';
+
+/**
+ * Main Navbar component that handles navigation, search, and mobile responsiveness
+ * 
+ * @returns {JSX.Element} Rendered Navbar component
+ */
+export default function Navbar() {
+  // State for search modal visibility
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  
+  // State for mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
+  /**
+   * Effect to handle responsive behavior
+   * Automatically closes mobile menu when screen size increases to desktop width
+   */
   useEffect(() => {
     // Handle window resize to close mobile menu on larger screens
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 768) { // 768px is the medium breakpoint in Tailwind
         setIsMobileMenuOpen(false);
       }
     };
     
+    // Add event listener when component mounts
     window.addEventListener('resize', handleResize);
+    
+    // Clean up event listener when component unmounts
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, []); // Empty dependency array means this runs once on mount
   
-  // Handle search button click
+  /**
+   * Handle search button click
+   * Opens the search modal
+   */
   const handleSearchClick = () => {
     setIsSearchOpen(true);
   };
   
-  // Close search modal
-  const closeSearchModal = () => {
+  /**
+   * Closes the search modal
+   */
+  const handleCloseSearch = () => {
     setIsSearchOpen(false);
   };
-  
-  // Toggle mobile menu
+
+  /**
+   * Toggles the mobile menu open/closed state
+   */
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-  
-  // Close mobile menu when clicking a link
-  const handleMobileMenuItemClick = () => {
-    setIsMobileMenuOpen(false);
-  };
-  
-  // Dropdown links handle navigation directly via href
 
   return (
     <>
-      <nav className="navbar">
-        <div className="logo">
-          <Link href="/" className="text-xl font-bold">4CFC</Link>
-        </div>
-        
-        {/* Mobile menu button - only shows on small screens */}
-        <button 
-          className="mobile-menu-button"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-        
-        {/* Desktop & Mobile Navigation */}
-        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
-          <Link href="/" onClick={handleMobileMenuItemClick}>Home</Link>
-          <Link href="/about" onClick={handleMobileMenuItemClick}>About</Link>
-          <Link href="/planning-worksheet" onClick={handleMobileMenuItemClick}>Planning Worksheet</Link>
-          <Link href="/resources" onClick={handleMobileMenuItemClick}>Resources</Link>
-          
-          {/* College Collage Dropdown - Hoverable on desktop, clickable on mobile */}
-          <div className="dropdown">
-            <Link href="/college-collage" className="flex items-center text-white">
-              A College Collage
-              <span className="ml-1">▼</span>
+      {/* Main navigation bar - fixed at top of screen */}
+      <nav className="fixed w-full z-50 bg-opacity-95 backdrop-blur-sm bg-amber-50 py-3 px-4 md:px-8">
+        <div className="container mx-auto flex justify-between items-center">
+          {/* Logo and site title */}
+          <div className="flex items-center">
+            <Link href="/" className="text-2xl font-bold text-amber-900 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-all duration-300 hover:opacity-80">
+              4CFC
             </Link>
+            <span className="ml-2 hidden sm:inline-block text-sm text-white tracking-wide">
+              For College Students, From College Students
+            </span>
+          </div>
+
+          {/* Right side controls: search and menu */}
+          <div className="flex items-center space-x-2">
+            {/* Desktop Search Button - only visible on medium screens and up */}
+            <div className="hidden md:block">
+              <button 
+                className="p-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-200"
+                onClick={handleSearchClick}
+                aria-label="Search"
+              >
+                <FaSearch className="text-blue-600 hover:text-blue-800 transition-colors duration-200" />
+              </button>
+            </div>
             
-            <div className="dropdown-content">
-              <Link 
-                href="/college-collage" 
-                className="block w-full px-3 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white border-b border-gray-200"
-                onClick={handleMobileMenuItemClick}
-              >
-                All Categories
-              </Link>
-              <Link 
-                href="/college-collage?category=limited-resource" 
-                className="block w-full px-3 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white border-b border-gray-200"
-                onClick={handleMobileMenuItemClick}
-              >
-                Limited-Resource
-              </Link>
-              <Link 
-                href="/college-collage?category=student-athletes" 
-                className="block w-full px-3 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white border-b border-gray-200"
-                onClick={handleMobileMenuItemClick}
-              >
-                Student-Athletes
-              </Link>
-              <Link 
-                href="/college-collage?category=international" 
-                className="block w-full px-3 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white border-b border-gray-200"
-                onClick={handleMobileMenuItemClick}
-              >
-                International
-              </Link>
-              <Link 
-                href="/college-collage?category=stem" 
-                className="block w-full px-3 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-                onClick={handleMobileMenuItemClick}
-              >
-                STEM Majors
-              </Link>
+            {/* Mobile menu hamburger button - toggles mobile navigation */}
+            <button
+              className="flex items-center justify-center w-10 h-10 rounded-full focus:outline-none bg-amber-100 hover:bg-amber-200 transition-colors duration-200"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle mobile menu"
+            >
+              {/* Show X icon when menu is open, hamburger icon when closed */}
+              {isMobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu - Slides in from left, only visible when toggled */}
+        <div className={`fixed inset-0 z-40 transform transition-transform duration-300 ease-in-out top-14 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          {/* Background gradient and container for mobile menu */}
+          <div className="bg-gradient-to-b from-amber-50 to-amber-100 shadow-lg h-full overflow-y-auto p-4">
+            {/* White card containing navigation links */}
+            <div className="max-w-lg mx-auto rounded-xl bg-white p-6 shadow-md">
+              <div className="flex flex-col space-y-3">
+                {/* Navigation links - each closes the mobile menu when clicked */}
+                <Link 
+                  href="/" 
+                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/about" 
+                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link 
+                  href="/planning-worksheet" 
+                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Planning Worksheet
+                </Link>
+                <Link 
+                  href="/resources" 
+                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Resources
+                </Link>
+                
+                {/* College Collage section with nested category links */}
+                <div className="flex flex-col py-2">
+                  <Link 
+                    href="/college-collage" 
+                    className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    College Collage
+                  </Link>
+                  {/* Indented submenu for College Collage categories */}
+                  <div className="mt-2 ml-4 pl-4 border-l-2 border-amber-200 flex flex-col space-y-2 bg-amber-50/50 rounded-lg p-2">
+                    <Link 
+                      href="/college-collage" 
+                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      All Categories
+                    </Link>
+                    <Link 
+                      href="/college-collage?category=limited-resource" 
+                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Limited-Resource
+                    </Link>
+                    <Link 
+                      href="/college-collage?category=student-athletes" 
+                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Student-Athletes
+                    </Link>
+                    <Link 
+                      href="/college-collage?category=international" 
+                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      International
+                    </Link>
+                    <Link 
+                      href="/college-collage?category=stem" 
+                      className="py-2 px-3 text-base text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      STEM Majors
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Mobile Search Button */}
+                <button 
+                  className="py-3 px-4 text-lg font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 flex items-center mt-2"
+                  onClick={() => {
+                    handleSearchClick();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <FaSearch className="mr-2" />
+                  Search
+                </button>
+              </div>
             </div>
           </div>
-          
-          {/* Search Button */}
-          <button 
-            className="search-icon"
-            onClick={handleSearchClick}
-            aria-label="Search"
-          >
-            <FaSearch />
-          </button>
         </div>
       </nav>
       
-      {/* Search Modal */}
-      <SearchModal isOpen={isSearchOpen} onClose={closeSearchModal} />
+      {/* Search Modal - conditionally rendered based on isSearchOpen state */}
+      <SearchModal isOpen={isSearchOpen} onClose={handleCloseSearch} />
     </>
   );
 };
-
-export default Navbar;

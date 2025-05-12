@@ -5,6 +5,7 @@ import { FaHandHoldingUsd, FaFutbol, FaGlobeAmericas, FaFlask } from "react-icon
 
 function CollegeContent() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  // Dropdown state has been removed
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -65,41 +66,36 @@ function CollegeContent() {
 
   return (
     <>
-      <div className="header-gradient bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded">
-        <h1 className="text-center">A College Collage</h1>
+      {/* Top spacing to account for the fixed navbar */}
+      <div className="pt-16 md:pt-20"></div>
+
+      
+      <div className="header-gradient bg-gradient-to-r from-blue-300 to-purple-300 p-3 rounded">
+        <h1>A College Collage</h1>
       </div>
+      
 
-      <div className="container mx-auto px-4 py-6 sm:py-8">
-        <p className="text-base sm:text-lg mb-6 sm:mb-8">
-          In this genuine and insightful series, we chat with current college students and recent alumni<br className="hidden sm:inline" />
-          about their experiences in the college application process and/or during college.<br className="hidden sm:inline" />
-          Immerse yourself in their stories to get a glimpse of what college beholds!
-        </p>
-
-        <div className="mb-6 sm:mb-8 bg-blue-50 p-3 sm:p-4 rounded border border-blue-200">
-          <h2 className="font-bold text-xl text-blue-600 mb-2">
-            {selectedCategory === 'all'
-              ? 'All Categories'
-              : selectedCategory === 'limited-resource'
-                ? 'Limited-Resource Backgrounds'
-                : selectedCategory === 'student-athletes'
-                  ? 'Student-Athletes'
-                  : selectedCategory === 'international'
-                    ? 'International Students'
-                    : 'STEM Majors'}
-          </h2>
+      <div className="section container mx-auto px-4 md:px-8 py-12 md:py-16 bg-amber-50">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            In this genuine and insightful series, we chat with current college students and recent alumni<br className="hidden sm:inline" />
+            about their experiences in the college application process and/or during college.<br className="hidden sm:inline" />
+            Immerse yourself in their stories to get a glimpse of what college beholds!
+          </p>
         </div>
 
-        {/* Cards grid with proper separation */}
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* Dropdown has been removed */}
+
+        {/* Enhanced Cards Grid */}
+        <div className="grid md:grid-cols-2 gap-10 mt-12">
           {filteredCards.map(card => (
             <div
               key={card.key}
-              className="card p-6 bg-white border rounded-lg shadow-md flex flex-col items-center"
+              className="p-8 bg-white border border-gray-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center group hover:translate-y-[-4px] hover:border-blue-200"
             >
-              <div className="mb-4">{card.icon}</div>
-              <h2 className="text-xl font-bold text-blue-600 mb-2 text-center">{card.title}</h2>
-              <p className="text-center">{card.text}</p>
+              <div className="mb-6 rounded-full p-5 bg-blue-50 text-blue-500 group-hover:bg-blue-100 transition-all duration-300">{card.icon}</div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">{card.title}</h2>
+              <p className="text-center text-gray-600 leading-relaxed">{card.text}</p>
             </div>
           ))}
         </div>

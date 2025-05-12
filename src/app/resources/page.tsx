@@ -1,7 +1,7 @@
 export default function Resources() {
   return (
     <>
-      <div className="header-gradient bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded">
+      <div className="header-gradient bg-gradient-to-r from-blue-300 to-purple-300 p-3 rounded">
         <h1>College Application Resources</h1>
       </div>
       
