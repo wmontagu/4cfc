@@ -1,22 +1,8 @@
-/**
- * Tailwind CSS Framework Integration
- * 
- * The following directives instruct the Tailwind CSS processor to inject its styles
- * into our final CSS bundle during build time. These are special directives that are
- * processed by PostCSS plugins, not standard CSS rules.
- * 
- * NOTE: These lines may show as linting errors in some editors because @tailwind
- * is not a standard CSS at-rule, but they are valid Tailwind directives.
- */
-
-/* Injects Tailwind's base styles and any base styles registered by plugins */
-@tailwind base;
-
-/* Injects Tailwind's component classes and any component classes registered by plugins */
-@tailwind components;
-
-/* Injects Tailwind's utility classes and any utility classes registered by plugins */
-@tailwind utilities;
+/* These are special Tailwind CSS directives, not standard CSS. 
+   They may show as linting errors but are required for Tailwind to work. */
+@tailwind base;       /* Reset and base styles */
+@tailwind components; /* Component classes */
+@tailwind utilities;  /* Utility classes */
 
 /* Global CSS variables for consistent colors and themes */
 :root {

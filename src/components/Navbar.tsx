@@ -1,86 +1,37 @@
-/**
- * Navbar Component - Site-wide navigation bar
- * 
- * This component appears at the top of every page and provides:
- * - Site branding/logo
- * - Navigation menu (mobile-responsive)
- * - Search functionality
- */
-
-// Enable client-side interactivity
+// "use client" enables interactivity - required for React hooks and browser APIs
 "use client";
 
-// Import React hooks for state management
 import { useState, useEffect } from 'react';
-
-// Import Next.js Link component for optimized client-side navigation
 import Link from 'next/link';
-
-// Import icons from react-icons library
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
-
-// Import the search modal component
 import SearchModal from './SearchModal';
 
-/**
- * Main Navbar component that handles navigation, search, and mobile responsiveness
- * 
- * @returns {JSX.Element} Rendered Navbar component
- */
 export default function Navbar() {
-  // State for search modal visibility
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  
-  // State for mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  /**
-   * Effect to handle responsive behavior
-   * Automatically closes mobile menu when screen size increases to desktop width
-   */
+  // Auto-close mobile menu when screen size increases to desktop width
   useEffect(() => {
-    // Handle window resize to close mobile menu on larger screens
     const handleResize = () => {
-      if (window.innerWidth >= 768) { // 768px is the medium breakpoint in Tailwind
+      if (window.innerWidth >= 768) { // Tailwind md breakpoint
         setIsMobileMenuOpen(false);
       }
     };
     
-    // Add event listener when component mounts
     window.addEventListener('resize', handleResize);
-    
-    // Clean up event listener when component unmounts
     return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
   
-  /**
-   * Handle search button click
-   * Opens the search modal
-   */
-  const handleSearchClick = () => {
-    setIsSearchOpen(true);
-  };
-  
-  /**
-   * Closes the search modal
-   */
-  const handleCloseSearch = () => {
-    setIsSearchOpen(false);
-  };
-
-  /**
-   * Toggles the mobile menu open/closed state
-   */
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  // Event handlers for search and mobile menu
+  const handleSearchClick = () => setIsSearchOpen(true);
+  const handleCloseSearch = () => setIsSearchOpen(false);
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
     <>
-      {/* Main navigation bar - fixed at top of screen */}
+      {/* Main navigation - fixed at top of screen */}
       <nav className="fixed w-full z-50 bg-opacity-95 backdrop-blur-sm bg-amber-50 py-3 px-4 md:px-8">
         <div className="container mx-auto flex justify-between items-center">
-          {/* Logo and site title */}
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-amber-900 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-all duration-300 hover:opacity-80">
               4CFC
@@ -90,9 +41,8 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Right side controls: search and menu */}
           <div className="flex items-center space-x-2">
-            {/* Desktop Search Button - only visible on medium screens and up */}
+            {/* Search button (desktop only) */}
             <div className="hidden md:block">
               <button 
                 className="p-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-200"
@@ -103,23 +53,20 @@ export default function Navbar() {
               </button>
             </div>
             
-            {/* Mobile menu hamburger button - toggles mobile navigation */}
+            {/* Mobile menu toggle */}
             <button
               className="flex items-center justify-center w-10 h-10 rounded-full focus:outline-none bg-amber-100 hover:bg-amber-200 transition-colors duration-200"
               onClick={toggleMobileMenu}
               aria-label="Toggle mobile menu"
             >
-              {/* Show X icon when menu is open, hamburger icon when closed */}
               {isMobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu - Slides in from left, only visible when toggled */}
+        {/* Mobile menu - slides in from left when toggled */}
         <div className={`fixed inset-0 z-40 transform transition-transform duration-300 ease-in-out top-14 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          {/* Background gradient and container for mobile menu */}
           <div className="bg-gradient-to-b from-amber-50 to-amber-100 shadow-lg h-full overflow-y-auto p-4">
-            {/* White card containing navigation links */}
             <div className="max-w-lg mx-auto rounded-xl bg-white p-6 shadow-md">
               <div className="flex flex-col space-y-3">
                 {/* Navigation links - each closes the mobile menu when clicked */}
